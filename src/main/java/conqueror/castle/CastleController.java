@@ -25,32 +25,35 @@ public class CastleController {
     {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         String currentUser = auth.getName();
-        Castle lastCastle = castleRepo.findAllOrderByXDesc();
+
+        Castle lastCastle = castleRepo.findAllOrderByIdDesc();
+
         if(lastCastle == null) {
-            x = (0 * 10) + (int) (1 + (int) (Math.random() * 10));
-            y = (0 * 10) + (int) (1 + (int) (Math.random() * 10));
+            x = (0 * 10) + (int) (0 + (int) (Math.random() * 9));
+            y = (0 * 10) + (int) (0 + (int) (Math.random() * 9));
             Castle newCastle = new Castle(currentUser, name, x, y);
             return castleRepository.save(newCastle);
         }
-        else if(lastCastle.getX() == 50){
+        if(lastCastle.getX() / 10 == 2){
                 i = 0;
                 j = lastCastle.getY() / 10 + 1;
 
-                x = (i * 10) + (int) (1 + (int) (Math.random() * 10));
-                y = (j * 10) + (int) (1 + (int) (Math.random() * 10));
+                x = (i * 10) + (int) (0 + (int) (Math.random() * 9));
+                y = (j * 10) + (int) (0 + (int) (Math.random() * 9));
                 Castle newCastle = new Castle(currentUser, name, x, y);
 
                 return castleRepository.save(newCastle);
             }
-            else {
-                i = lastCastle.getX()/10 + 1;
-                j = lastCastle.getY();
-                x = (i * 10) + (int) (1 + (int) (Math.random() * 10));
-                y = (j * 10) + (int) (1 + (int) (Math.random() * 10));
+            else{
+                i = lastCastle.getX() / 10 + 1;
+                j = lastCastle.getY() / 10;
+                x = (i * 10) + (int) (0 + (int) (Math.random() * 9));
+                y = (j * 10) + (int) (0 + (int) (Math.random() * 9));
                 Castle newCastle = new Castle(currentUser, name, x, y);
 
                 return castleRepository.save(newCastle);
             }
+
         }
 
 }

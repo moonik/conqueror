@@ -11,9 +11,20 @@ public class CastleRepositoryImpl implements CastleRepo {
     private EntityManager em;
 
 
+//    @Override
+//    public Castle findAllOrderByXDesc() {
+//        Query query = em.createQuery("SELECT c from Castle c ORDER BY x DESC");
+//        List<Castle> lastCastle = query.getResultList();
+//        if(lastCastle.size() == 0 || lastCastle.isEmpty())
+//        {
+//            return null;
+//        }
+//        return lastCastle.get(0);
+//    }
+
     @Override
-    public Castle findAllOrderByXDesc() {
-        Query query = em.createQuery("SELECT c from Castle c ORDER BY x DESC");
+    public Castle findAllOrderByIdDesc() {
+        Query query = em.createQuery("SELECT c from Castle c ORDER BY id DESC");
         List<Castle> lastCastle = query.getResultList();
         if(lastCastle.size() == 0 || lastCastle.isEmpty())
         {
