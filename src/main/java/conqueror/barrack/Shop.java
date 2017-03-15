@@ -5,7 +5,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 
 @Entity
-public class Barrack {
+public class Shop {
 
     @Id
     @GeneratedValue
@@ -16,9 +16,9 @@ public class Barrack {
     private int hp;
     private int cost;
 
-    public Barrack(){}
+    public Shop(){}
 
-    public Barrack(String warrior, int attack, int hp, int cost) {
+    public Shop(String warrior, int attack, int hp, int cost) {
         this.warrior = warrior;
         this.attack = attack;
         this.hp = hp;

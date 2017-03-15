@@ -1,5 +1,7 @@
 package conqueror.castle;
 
+import conqueror.resourceBuilding.ResourceBuilding;
+import conqueror.resourceBuilding.ResourceBuildingRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -18,6 +20,9 @@ public class CastleController {
     @Autowired
     private CastleRepo castleRepo;
 
+    @Autowired
+    private ResourceBuildingRepository resourceBuildingRepository;
+
     private int i, j, x, y;
 
     @PostMapping("create")
@@ -31,17 +36,20 @@ public class CastleController {
         if(lastCastle == null) {
             x = (0 * 10) + (int) (0 + (int) (Math.random() * 9));
             y = (0 * 10) + (int) (0 + (int) (Math.random() * 9));
-            Castle newCastle = new Castle(currentUser, name, x, y);
+            Castle newCastle = castleRepository.save(new Castle(currentUser, name, x, y));
+            ResourceBuilding resourceBuilding = new ResourceBuilding(newCastle.getId(), 1, 1, 1);
+            resourceBuildingRepository.save(resourceBuilding);
             return castleRepository.save(newCastle);
         }
-        if(lastCastle.getX() / 10 == 2){
+        if(lastCastle.getX() / 10 == 50){
                 i = 0;
                 j = lastCastle.getY() / 10 + 1;
 
                 x = (i * 10) + (int) (0 + (int) (Math.random() * 9));
                 y = (j * 10) + (int) (0 + (int) (Math.random() * 9));
-                Castle newCastle = new Castle(currentUser, name, x, y);
-
+                Castle newCastle = castleRepository.save(new Castle(currentUser, name, x, y));
+                ResourceBuilding resourceBuilding = new ResourceBuilding(newCastle.getId(), 1, 1, 1);
+                resourceBuildingRepository.save(resourceBuilding);
                 return castleRepository.save(newCastle);
             }
             else{
@@ -49,9 +57,10 @@ public class CastleController {
                 j = lastCastle.getY() / 10;
                 x = (i * 10) + (int) (0 + (int) (Math.random() * 9));
                 y = (j * 10) + (int) (0 + (int) (Math.random() * 9));
-                Castle newCastle = new Castle(currentUser, name, x, y);
-
-                return castleRepository.save(newCastle);
+                Castle newCastle = castleRepository.save(new Castle(currentUser, name, x, y));
+                ResourceBuilding resourceBuilding = new ResourceBuilding(newCastle.getId(), 1, 1, 1);
+                resourceBuildingRepository.save(resourceBuilding);
+                return newCastle;
             }
 
         }
