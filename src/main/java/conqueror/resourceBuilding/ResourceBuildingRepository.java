@@ -5,4 +5,6 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface ResourceBuildingRepository extends JpaRepository<ResourceBuilding, Long> {
+
+    ResourceBuilding findOneByCastleId(Long id);
 }
