@@ -1,4 +1,4 @@
-package conqueror.barrack;
+package conqueror.shop;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -16,7 +16,8 @@ public class Shop {
     private int hp;
     private int cost;
 
-    public Shop(){}
+    public Shop() {
+    }
 
     public Shop(String warrior, int attack, int hp, int cost) {
         this.warrior = warrior;

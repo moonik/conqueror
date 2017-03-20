@@ -1,4 +1,4 @@
-package conqueror.barrack;
+package conqueror.shop;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 

@@ -2,7 +2,6 @@ package conqueror.profile;
 
 import conqueror.castle.Castle;
 import conqueror.castle.CastleRepository;
-import conqueror.resourceBuilding.ResourceBuilding;
 import conqueror.resourceBuilding.ResourceBuildingRepository;
 import conqueror.user.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,25 +27,23 @@ public class UserResourcesController {
     @Autowired
     private CastleRepository castleRepository;
 
+    private UserResources userResources;
+
     private int profit;
 
     @Scheduled(fixedRate = 5000)
     public void getUserResources() {
-        System.out.print("scheduling");
         List<Castle> castles = castleRepository.findAll();
-        if (castles.size() == 0)
-        {
+        if (castles.size() == 0) {
             return;
-        }else {
-            ResourceBuilding resourceBuilding;
+        } else {
             for (int i = 0; i < castles.size(); i++) {
                 profit = resourceBuildingRepository.findOneByCastleId(castles.get(i).getId()).getProfit();
-                UserResources userResources = userResourcesRepository.findOne(castles.get(i).getId());
-                if(userResources == null)
-                {
+                userResources = userResourcesRepository.findOne(castles.get(i).getId());
+                if (userResources == null) {
                     userResourcesRepository.save(new UserResources(castles.get(i).getId(), castles.get(i).getId(), 500L + profit));
-                }else
-                userResourcesRepository.save(new UserResources(castles.get(i).getId(), castles.get(i).getId(), userResources.getGold() + profit));
+                } else
+                    userResourcesRepository.save(new UserResources(castles.get(i).getId(), castles.get(i).getId(), userResources.getGold() + profit));
             }
         }
     }

@@ -26,8 +26,7 @@ public class CastleRepositoryImpl implements CastleRepo {
     public Castle findAllOrderByIdDesc() {
         Query query = em.createQuery("SELECT c from Castle c ORDER BY id DESC");
         List<Castle> lastCastle = query.getResultList();
-        if(lastCastle.size() == 0 || lastCastle.isEmpty())
-        {
+        if (lastCastle.size() == 0 || lastCastle.isEmpty()) {
             return null;
         }
         return lastCastle.get(0);

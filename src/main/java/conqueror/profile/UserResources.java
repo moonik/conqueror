@@ -11,15 +11,15 @@ public class UserResources {
     @GeneratedValue
     private Long id;
 
-    private Long userId;
+    private Long castleId;
     private Long gold;
 
     public UserResources() {
     }
 
-    public UserResources(Long id, Long userId, Long gold) {
+    public UserResources(Long id, Long castleId, Long gold) {
         this.id = id;
-        this.userId = userId;
+        this.castleId = castleId;
         this.gold = gold;
     }
 
@@ -39,11 +39,11 @@ public class UserResources {
         this.gold = gold;
     }
 
-    public Long getUserId() {
-        return userId;
+    public Long getCastleId() {
+        return castleId;
     }
 
-    public void setUserId(Long userId) {
-        this.userId = userId;
+    public void setCastleId(Long castleId) {
+        this.castleId = castleId;
     }
 }

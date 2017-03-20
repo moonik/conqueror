@@ -16,7 +16,8 @@ public class ResourceBuilding {
     private int goldCostToUpgrade;
     private int currentLevel;
 
-    public ResourceBuilding(){}
+    public ResourceBuilding() {
+    }
 
     public ResourceBuilding(Long castleId, int profit, int goldCostToUpgrade, int currentLevel) {
         this.castleId = castleId;

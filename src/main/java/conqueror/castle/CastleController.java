@@ -26,14 +26,13 @@ public class CastleController {
     private int i, j, x, y;
 
     @PostMapping("create")
-    public Castle create(@RequestParam("name") String name)
-    {
+    public Castle create(@RequestParam("name") String name) {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         String currentUser = auth.getName();
 
         Castle lastCastle = castleRepo.findAllOrderByIdDesc();
 
-        if(lastCastle == null) {
+        if (lastCastle == null) {
             x = (0 * 10) + (int) (0 + (int) (Math.random() * 9));
             y = (0 * 10) + (int) (0 + (int) (Math.random() * 9));
             Castle newCastle = castleRepository.save(new Castle(currentUser, name, x, y));
@@ -41,28 +40,27 @@ public class CastleController {
             resourceBuildingRepository.save(resourceBuilding);
             return castleRepository.save(newCastle);
         }
-        if(lastCastle.getX() / 10 == 50){
-                i = 0;
-                j = lastCastle.getY() / 10 + 1;
+        if (lastCastle.getX() / 10 == 50) {
+            i = 0;
+            j = lastCastle.getY() / 10 + 1;
 
-                x = (i * 10) + (int) (0 + (int) (Math.random() * 9));
-                y = (j * 10) + (int) (0 + (int) (Math.random() * 9));
-                Castle newCastle = castleRepository.save(new Castle(currentUser, name, x, y));
-                ResourceBuilding resourceBuilding = new ResourceBuilding(newCastle.getId(), 1, 1, 1);
-                resourceBuildingRepository.save(resourceBuilding);
-                return castleRepository.save(newCastle);
-            }
-            else{
-                i = lastCastle.getX() / 10 + 1;
-                j = lastCastle.getY() / 10;
-                x = (i * 10) + (int) (0 + (int) (Math.random() * 9));
-                y = (j * 10) + (int) (0 + (int) (Math.random() * 9));
-                Castle newCastle = castleRepository.save(new Castle(currentUser, name, x, y));
-                ResourceBuilding resourceBuilding = new ResourceBuilding(newCastle.getId(), 1, 1, 1);
-                resourceBuildingRepository.save(resourceBuilding);
-                return newCastle;
-            }
-
+            x = (i * 10) + (int) (0 + (int) (Math.random() * 9));
+            y = (j * 10) + (int) (0 + (int) (Math.random() * 9));
+            Castle newCastle = castleRepository.save(new Castle(currentUser, name, x, y));
+            ResourceBuilding resourceBuilding = new ResourceBuilding(newCastle.getId(), 1, 1, 1);
+            resourceBuildingRepository.save(resourceBuilding);
+            return castleRepository.save(newCastle);
+        } else {
+            i = lastCastle.getX() / 10 + 1;
+            j = lastCastle.getY() / 10;
+            x = (i * 10) + (int) (0 + (int) (Math.random() * 9));
+            y = (j * 10) + (int) (0 + (int) (Math.random() * 9));
+            Castle newCastle = castleRepository.save(new Castle(currentUser, name, x, y));
+            ResourceBuilding resourceBuilding = new ResourceBuilding(newCastle.getId(), 1, 1, 1);
+            resourceBuildingRepository.save(resourceBuilding);
+            return newCastle;
         }
+
+    }
 
 }

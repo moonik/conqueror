@@ -16,8 +16,7 @@ public class Castle {
     private int x;
     private int y;
 
-    public Castle()
-    {
+    public Castle() {
 
     }
 
