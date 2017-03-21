@@ -1,4 +1,4 @@
-package conqueror.shop;
+package conqueror.shop.exceptions;
 
 public class NotEnoughtGoldException extends RuntimeException {
     public NotEnoughtGoldException(String message, Throwable cause) {

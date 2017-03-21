@@ -1,5 +1,6 @@
 package conqueror.castle;
 
+import conqueror.castle.exceptions.CastleNameAlreadyExistsEcpetion;
 import conqueror.resourceBuilding.ResourceBuilding;
 import conqueror.resourceBuilding.ResourceBuildingRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,7 +32,10 @@ public class CastleController {
         String currentUser = auth.getName();
 
         Castle lastCastle = castleRepo.findAllOrderByIdDesc();
-
+        if(castleRepository.findByCastleName(name) != null)
+        {
+            throw new CastleNameAlreadyExistsEcpetion();
+        }
         if (lastCastle == null) {
             x = (0 * 10) + (int) (0 + (int) (Math.random() * 9));
             y = (0 * 10) + (int) (0 + (int) (Math.random() * 9));
