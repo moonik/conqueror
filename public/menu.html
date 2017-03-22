@@ -1,0 +1,19 @@
+<header class="top_header" ng-controller="MainCtrl">
+<nav class="navbar navbar-inverse">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <a class="navbar-brand" href="#">Conqueror</a>
+        </div>
+        <ul class="nav navbar-nav">
+            <li class="active"><a href="#">Home</a></li>
+            <li><a href="#">Page 1</a></li>
+            <li><a href="#">Page 2</a></li>
+        </ul>
+        <ul class="nav navbar-nav navbar-right">
+            <li ng-show="!isSignedIn"><a ng-click="registration()"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
+            <li ng-show="!isSignedIn"><a ng-click="login()"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+            <li ng-show="isSignedIn"><a ng-click="signOut()"><span class="glyphicon glyphicon-log-in"></span> Sign out</a></li>
+        </ul>
+    </div>
+</nav>
+    </header>

@@ -6,7 +6,7 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface CastleRepository extends JpaRepository<Castle, Long> {
 
-    Castle findByOwner(String currentUser);
-    Castle findByCastleName(String name);
+    Castle findOneByOwner(String currentUser);
+    Castle findOneByCastleName(String name);
 
 }

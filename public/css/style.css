@@ -1,0 +1,15 @@
+.submit-reg{
+    background-color: black;
+    border-radius: 10px;
+}
+.submit-reg:hover{
+    background-color:black;
+}
+
+.submit-log{
+    background-color: black;
+    border-radius: 10px;
+}
+.submit-log:hover{
+    background-color:black;
+}

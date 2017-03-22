@@ -31,4 +31,14 @@ public class CastleRepositoryImpl implements CastleRepo {
         }
         return lastCastle.get(0);
     }
+
+    @Override
+    public Castle findOneByCastleName(String name) {
+        Query query = em.createQuery("SELECT c from Castle c");
+        List<Castle> lastCastle = query.getResultList();
+        if (lastCastle.size() == 0 || lastCastle.isEmpty()) {
+            return null;
+        }
+        return lastCastle.get(0);
+    }
 }

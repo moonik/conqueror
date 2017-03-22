@@ -6,5 +6,5 @@ import org.springframework.stereotype.Repository;
 public interface CastleRepo {
 
     Castle findAllOrderByIdDesc();
-
+    Castle findOneByCastleName(String name);
 }
