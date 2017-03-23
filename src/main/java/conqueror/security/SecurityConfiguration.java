@@ -40,7 +40,8 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 				.headers().cacheControl();
 
 		http.authorizeRequests()
-				.antMatchers(HttpMethod.GET, "/api/users/**").hasRole("USER");
+				.antMatchers(HttpMethod.GET, "/api/users/**").hasRole("USER")
+				.antMatchers(HttpMethod.POST, "/api/castle/create").hasRole("USER");
 
 		http.addFilterBefore(
 				new StatelessLoginFilter(
