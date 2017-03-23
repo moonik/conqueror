@@ -30,6 +30,8 @@ angular.module('conquerorApp').controller('LoginCtrl', function ($scope, $rootSc
 
 
            function closeModal(data) {
+            $('body').removeClass('modal-open');
+            $('.modal-backdrop').remove();
                close(data, 500);
            }
 

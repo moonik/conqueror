@@ -47,6 +47,8 @@ angular.module('conquerorApp').controller('RegistrationCtrl', function ($scope, 
 
 
            function closeModal(data) {
+           $('body').removeClass('modal-open');
+           $('.modal-backdrop').remove();
                close(data, 500);
            }
 
