@@ -33,6 +33,7 @@ angular.module('conquerorApp').controller('MainCtrl', function ($scope, $rootSco
     $scope.signOut = function () {
         $rootScope.isSignedIn = false;
         localStorage.removeItem('jwt');
+        $rootScope.isSignedUp = false;
         console.log('signed out');
     };
 
