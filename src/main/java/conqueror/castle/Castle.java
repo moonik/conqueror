@@ -13,8 +13,8 @@ public class Castle {
 
     private String owner;
     private String castleName;
-    private int x;
-    private int y;
+    private int x; // x coordinate
+    private int y; // y coordinate
 
     public Castle() {
 

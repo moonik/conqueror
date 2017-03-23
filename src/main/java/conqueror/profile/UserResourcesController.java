@@ -31,6 +31,11 @@ public class UserResourcesController {
 
     private int profit;
 
+    /**
+     * function adds gold to all castles
+     * for a start gets profit for the castle from the resource building
+     * then searches user resources by castle id (searches its gold)
+     */
     @Scheduled(fixedRate = 5000)
     public void getUserResources() {
         List<Castle> castles = castleRepository.findAll();

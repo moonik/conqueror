@@ -16,13 +16,23 @@ public class ShopController {
     @Autowired
     private ShopRepository shopRepository;
 
+    /**
+     * buy new army
+     * @param castleId castle id
+     * @param shopDTO
+     * @return new army
+     */
     @PostMapping("buy/{castleId}")
-    public Army buy(@PathVariable("castleId") Long castleId, @RequestParam("amount") Long amount, @RequestParam("warrior") String warrior)
+    public Army buy(@PathVariable("castleId") Long castleId, ShopDTO shopDTO)
     {
-        Army army = shopService.buyArmy(castleId, amount, warrior);
+        Army army = shopService.buyArmy(castleId, shopDTO);
         return army;
     }
 
+    /**
+     * gets shop items
+     * @return gold
+     */
     @GetMapping("get")
     public List<Shop> getGoods()
     {

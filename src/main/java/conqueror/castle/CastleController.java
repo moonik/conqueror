@@ -18,6 +18,11 @@ public class CastleController {
     @Autowired
     private CastleRepository castleRepository;
 
+    /**
+     * create castle
+     * @param name castle name
+     * @return saves castle
+     */
     @PostMapping("create")
     public Castle create(@RequestParam(name = "name", required=false) String name) {
 

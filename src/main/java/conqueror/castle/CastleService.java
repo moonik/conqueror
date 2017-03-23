@@ -23,6 +23,18 @@ public class CastleService {
 
     private int i, j, x, y;
 
+    /**
+     * function create castle with coordinates x and y
+     * map is 50x50
+     * i is a line
+     * j is a column
+     * x = i * 10 + random value from 1 to 9
+     * y = j * 10 + random value from 1 to 9
+     * if a new castle wants to be created on x = 51 then i = 0 and j + 1
+     * function searches last castle and gets its coordinates and then pluses coordinates to a new castle
+     * @param name castle name
+     * @return saves castle
+     */
     public Castle createCastle(String name) {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         String currentUser = auth.getName();

@@ -11,19 +11,19 @@ public class Shop {
     @GeneratedValue
     private Long id;
 
-    private String warrior;
+    private String warrior; // warrior name
     private int attack;
     private int hp;
-    private int cost;
+    private int price;
 
     public Shop() {
     }
 
-    public Shop(String warrior, int attack, int hp, int cost) {
+    public Shop(String warrior, int attack, int hp, int price) {
         this.warrior = warrior;
         this.attack = attack;
         this.hp = hp;
-        this.cost = cost;
+        this.price = price;
     }
 
     public Long getId() {
@@ -58,11 +58,11 @@ public class Shop {
         this.hp = hp;
     }
 
-    public int getCost() {
-        return cost;
+    public int getPrice() {
+        return price;
     }
 
-    public void setCost(int cost) {
-        this.cost = cost;
+    public void setPrice(int price) {
+        this.price = price;
     }
 }
