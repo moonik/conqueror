@@ -24,8 +24,8 @@
                 </div>
                 <div class="modal-footer">
                     <input ng-show="!isSignedUp" type="submit" value="Sign Up" class="btn btn-block btn-primary submit-reg" name="btn-signup" ng-click="signUp()">
-                    <input ng-if="isSignedUp && !userCastle" type="submit" value="Sign In" class="btn btn-block btn-primary submit-log" name="btn-signup" ng-click="signIn()">
-                    <input ng-show="userCastle" type="submit" value="Create castle" class="btn btn-block btn-primary submit-log" name="btn-signup" ng-click="castleCreation()">
+                    <input ng-if="isSignedUp && !userCastle" type="submit" value="Sign In" class="btn btn-block btn-primary submit-log" name="btn-signin" ng-click="signIn()">
+                    <input ng-show="userCastle" type="submit" value="Create castle" class="btn btn-block btn-primary submit-log" name="btn-castleCreate" ng-click="castleCreation()">
                 </div>
             </div>
         </div>

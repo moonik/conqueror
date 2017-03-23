@@ -7,14 +7,15 @@
                 <h4 class="modal-title">Login</h4>
             </div>
             <div class="modal-body">
-                <div id="login-form" ng-show="!isSignedIn">
-                    <form class="form-group">
+                <div id="login-form">
+                    <form class="form-group" ng-show="!isSignedIn">
                         <label  for="username">Username</label>
                         <input type="text_message" name="username" id="username" class="form-control" ng-model="userForm.username"><br/>
                         <label for="password">Password</label>
                         <input type="password" name="password" id="password" class="form-control" ng-model="userForm.password"><br/>
                         <!--<input type="submit"  value="Sign Out" ng-click="signOut()" ng-if="isSignedIn">-->
                     </form>
+                    <img class="checkmark" ng-show="isSignedIn" src="images/check_mark.jpg" alt="mark">
                 </div>
                 <div class="modal-footer">
                     <input ng-show="!isSignedIn" type="submit" value="Sign In" class="btn btn-block btn-primary submit-log" name="btn-signup" ng-click="signIn()">

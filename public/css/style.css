@@ -17,3 +17,8 @@
 .navigbar {
     border-radius: 0px;
 }
+
+IMG.checkmark {
+    display: block;
+    margin-left: auto;
+    margin-right: auto }
