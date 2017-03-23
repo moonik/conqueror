@@ -13,3 +13,7 @@
 .submit-log:hover{
     background-color:black;
 }
+
+.navigbar {
+    border-radius: 0px;
+}
