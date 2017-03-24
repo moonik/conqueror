@@ -8,6 +8,8 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("api/castle/")
 public class CastleController {
@@ -31,6 +33,11 @@ public class CastleController {
         return newCastle;
     }
 
+    /**
+     * checks if user already has a castle
+     * @return HttpStatus OK if user doesn't have the castle or Exception if he does
+     */
+
     @GetMapping("checkCastle")
     public ResponseEntity<Castle> checkCastle()
     {
@@ -43,5 +50,21 @@ public class CastleController {
         }else
             return new ResponseEntity<Castle>(HttpStatus.OK);
     }
+
+    @GetMapping("myCastle")
+    public Castle getMyCastle()
+    {
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        String currentUser = auth.getName();
+
+        return castleRepository.findOneByOwner(currentUser);
+    }
+
+    @GetMapping("nearestCastles/{id}")
+    public List<Castle> getCastles(@PathVariable("id") Long castleId)
+    {
+        return castleService.getNearestCastles(castleId);
+    }
+
 
 }

@@ -1,0 +1,17 @@
+<div class="modal fade">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" ng-click="close()" data-dismiss="modal"
+                        aria-hidden="true">&times;</button>
+                <h4 class="modal-title">Neighbors</h4>
+            </div>
+            <div class="modal-body">
+                <div class="castlesList" ng-repeat="castle in nearestCastles">
+                    <span class="castleName" ng-if="myCastle.id != castle.id">Castle name: <b>{{castle.castleName}}</b></span>
+                    <span style="margin-left: 50px" class="castleOwner">Castle owner: <b>{{castle.owner}}</b></span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

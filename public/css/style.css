@@ -2,6 +2,7 @@
     background-color: black;
     border-radius: 10px;
 }
+
 .submit-reg:hover{
     background-color:black;
 }
@@ -22,3 +23,41 @@ IMG.checkmark {
     display: block;
     margin-left: auto;
     margin-right: auto }
+
+IMG.myCastle {
+    display: block;
+    margin-left: auto;
+    margin-right: auto
+    height: 50%;
+    width: 68%;
+    }
+
+#castle{
+    margin-left: 10px;
+    }
+
+span#warriorName{
+    display:inline-block;
+    width: 25%;
+    margin: 10px;
+}
+
+span#warriorPrice{
+    diplay: inline-block;
+    width: 25%;
+    margin: 10px;
+}
+
+span#amount{
+    diplay: inline-block;
+    width: 25%;
+    margin: 10px;
+}
+button#buy{
+  margin: 10px;
+}
+
+#shopList:hover{
+background-color: #E6E6FA;
+}
+

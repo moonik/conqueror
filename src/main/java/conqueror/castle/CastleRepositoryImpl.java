@@ -61,4 +61,15 @@ public class CastleRepositoryImpl implements CastleRepo {
         List<String> castles = query.getResultList();
         return castles;
     }
+
+    @Override
+    public List<Castle> findNearestCastles(int xMax, int yMax, int xMin, int yMin) {
+        Query query = em.createQuery("SELECT c from Castle c where (c.x <= ?1 AND c.x >= ?3) AND (c.y <= ?2 AND c.y >= ?4)");
+        query.setParameter(1, xMax);
+        query.setParameter(2, yMax);
+        query.setParameter(3, xMin);
+        query.setParameter(4, yMin);
+        List<Castle> castles = query.getResultList();
+        return castles;
+    }
 }

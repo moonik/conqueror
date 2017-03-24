@@ -32,4 +32,6 @@ public interface CastleRepo {
      * @return owners
      */
     List<String> findAllWithCastles();
+
+    List<Castle> findNearestCastles(int xMax, int yMax, int xMin, int yMin);
 }

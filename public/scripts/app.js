@@ -5,9 +5,12 @@ gameProject.config(function($routeProvider, $httpProvider){
 $routeProvider.when('/registration', {
     templateUrl: 'registration.html',
     controller: 'MainCtrl'
+}).when('/my', {
+    templateUrl: 'MyCastle.html',
+    controller: 'CastleCtrl'
 });
 
-                                $httpProvider.interceptors.push('httpRequestInterceptor');
+$httpProvider.interceptors.push('httpRequestInterceptor');
 });
 
 //testProject.run(function ($rootScope, $location, ModalService, $http) {

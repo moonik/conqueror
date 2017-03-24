@@ -9,6 +9,8 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class CastleService {
 
@@ -32,6 +34,7 @@ public class CastleService {
      * y = j * 10 + random value from 1 to 9
      * if a new castle wants to be created on x = 51 then i = 0 and j + 1
      * function searches last castle and gets its coordinates and then pluses coordinates to a new castle
+     *
      * @param name castle name
      * @return saves castle
      */
@@ -49,8 +52,7 @@ public class CastleService {
             return castleRepository.save(newCastle);
         }
 
-        if(castleRepository.findOneByOwner(currentUser) != null || name.equals("") || name.indexOf(" ") != -1)
-        {
+        if (castleRepository.findOneByOwner(currentUser) != null || name.equals("") || name.indexOf(" ") != -1) {
             throw new CastleException();
         }
 
@@ -78,6 +80,18 @@ public class CastleService {
             resourceBuildingRepository.save(resourceBuilding);
             return newCastle;
         }
+    }
+
+    /**
+     * searches nearest castles
+     * @param id castle id
+     * @return list of castles
+     */
+    public List<Castle> getNearestCastles(Long id) {
+        Castle myCastle = castleRepository.findOne(id);
+        x = myCastle.getX();
+        y = myCastle.getY();
+        return castleRepo.findNearestCastles(x+50, y+50, x-50, y-50);
     }
 
 }

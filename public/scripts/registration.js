@@ -16,30 +16,30 @@ angular.module('conquerorApp').controller('RegistrationCtrl', function ($scope, 
     };
 
      $scope.signIn = function () {
-               $http.post('api/login', $scope.userForm).then(function (response) {
-                   localStorage.setItem('jwt', response.headers()['x-auth-token']);
-                    $scope.getUser();
-                        console.log('signed in');
-                         $http.get('api/castle/checkCastle').then(function (response) {
-                          $rootScope.userCastle = true;
-                         },
-                         function(response){
-                            $rootScope.userCastle = false;
-                            closeModal(undefined);
-                         });
-                 })
-                $scope.userForm = {};
-           };
+        $http.post('api/login', $scope.userForm).then(function (response) {
+        localStorage.setItem('jwt', response.headers()['x-auth-token']);
+        $scope.getUser();
+        console.log('signed in');
+        $http.get('api/castle/checkCastle').then(function (response) {
+        $rootScope.userCastle = true;
+        },
+        function(response){
+        $rootScope.userCastle = false;
+        closeModal(undefined);
+        });
+        })
+        $scope.userForm = {};
+        };
 
-            $rootScope.getUser = function () {
-                   $http.get('api/users/me').then(function (response) {
-                       $rootScope.user = response.data;
-                       $rootScope.isSignedIn = true;
-                   }, function(response) {
-                       localStorage.removeItem('jwt');
-                       $rootScope.isSignedIn = false;
-                   })
-               };
+     $rootScope.getUser = function () {
+        $http.get('api/users/me').then(function (response) {
+        $rootScope.user = response.data;
+        $rootScope.isSignedIn = true;
+        }, function(response) {
+            localStorage.removeItem('jwt');
+            $rootScope.isSignedIn = false;
+            })
+            };
 
          $scope.close = function () {
                closeModal(undefined);
@@ -53,15 +53,15 @@ angular.module('conquerorApp').controller('RegistrationCtrl', function ($scope, 
            }
 
             $scope.castleCreation = function()
-                      {
-                       var fd = new FormData();
-                       fd.append('name', $scope.castleName.name);
-                       $http.post('api/castle/create', fd, {
-                        transformRequest: angular.identity,
-                        headers: {'Content-Type': undefined}
-                        }).then(function(response){
-                        closeModal(undefined);
-                         })
-                      };
+            {
+                var fd = new FormData();
+                fd.append('name', $scope.castleName.name);
+                $http.post('api/castle/create', fd, {
+                transformRequest: angular.identity,
+                headers: {'Content-Type': undefined}
+                }).then(function(response){
+                closeModal(undefined);
+                })
+                };
 
 });
