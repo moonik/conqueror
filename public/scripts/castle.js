@@ -2,9 +2,13 @@ angular.module('conquerorApp').controller('CastleCtrl', function ($scope, $rootS
 $scope.myCastle = {};
 $scope.castleId = $routeParams['id'];
 $scope.myCastle = {};
-
+$scope.castlerRes = {};
     $http.get('api/castle/castle/' + $scope.castleId, $scope.myCastle).then(function(data){
         $scope.myCastle = data.data;
+    })
+
+    $http.get('api/userresources/getGold/' + $scope.castleId, $scope.castlerRes).then(function(data){
+        $scope.castlerRes = data.data;
     })
 
     $scope.sendGold = function()

@@ -85,4 +85,11 @@ public class UserResourcesController {
         Long idReceiver = castleRepo.findOneByCastleName(receiver).getId();
         return userResourcesService.sendGold(idReceiver, userResourcesDTO);
     }
+
+    @GetMapping("getGold/{id}")
+    public UserResources getCastleGold(@PathVariable("id") Long id)
+    {
+        return userResourcesRepository.findOne(id);
+    }
+
 }
