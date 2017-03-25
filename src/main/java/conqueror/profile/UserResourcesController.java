@@ -1,6 +1,7 @@
 package conqueror.profile;
 
 import conqueror.castle.Castle;
+import conqueror.castle.CastleRepo;
 import conqueror.castle.CastleRepository;
 import conqueror.resourceBuilding.ResourceBuildingRepository;
 import conqueror.user.repository.UserRepository;
@@ -8,9 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -32,7 +31,10 @@ public class UserResourcesController {
     private CastleRepository castleRepository;
 
     @Autowired
-    private UserGoldRepository userGoldRepository;
+    private UserResourcesService userResourcesService;
+
+    @Autowired
+    private CastleRepo castleRepo;
 
     private UserResources userResources;
 
@@ -61,7 +63,7 @@ public class UserResourcesController {
     }
 
     @GetMapping("getResources")
-    public UserGold userResources()
+    public Long userResources()
     {
         Long res = 0L;
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
@@ -74,6 +76,13 @@ public class UserResourcesController {
             res += userResourcesRepository.findOne(castles.get(i).getId()).getGold();
         }
 
-        return userGoldRepository.save(new UserGold(userRepository.findOneByUsername(currentUser).get().getId(), currentUser, res));
+        return res;
+    }
+
+    @PostMapping("sendGold/{receiver}")
+    public UserResources sendGold(@PathVariable("receiver") String receiver, UserResourcesDTO userResourcesDTO)
+    {
+        Long idReceiver = castleRepo.findOneByCastleName(receiver).getId();
+        return userResourcesService.sendGold(idReceiver, userResourcesDTO);
     }
 }

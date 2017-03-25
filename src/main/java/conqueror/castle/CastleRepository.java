@@ -14,7 +14,7 @@ public interface CastleRepository extends JpaRepository<Castle, Long> {
      * @return castle
      */
     Castle findOneByOwner(String currentUser);
-    Castle findOneByCastleName(String name);
+    //Castle findOneByCastleName(String name);
     List<Castle> findByOwner(String owner);
 
 }

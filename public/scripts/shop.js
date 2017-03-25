@@ -21,4 +21,14 @@ $scope.buy = function(amount, warrior)
     })
     };
 
+    $scope.close = function () {
+            closeModal(undefined);
+            };
+
+    function closeModal(data) {
+        $('body').removeClass('modal-open');
+        $('.modal-backdrop').remove();
+        close(data, 500);
+        }
+
 });

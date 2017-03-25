@@ -2,9 +2,23 @@ angular.module('conquerorApp').controller('CastleCtrl', function ($scope, $rootS
 $scope.myCastle = {};
 $scope.castleId = $routeParams['id'];
 $scope.myCastle = {};
+
     $http.get('api/castle/castle/' + $scope.castleId, $scope.myCastle).then(function(data){
         $scope.myCastle = data.data;
     })
+
+    $scope.sendGold = function()
+    {
+        ModalService.showModal({
+        templateUrl: 'sendGold.html',
+        controller: 'MailsCtrl',
+        inputs: {
+            castleId: $scope.myCastle.id
+            }
+            }).then(function(modal) {
+            modal.element.modal();
+            });
+        };
 
     $scope.getNearest = function(){
      ModalService.showModal({

@@ -1,0 +1,18 @@
+<div class="modal fade">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" ng-click="close()" data-dismiss="modal"
+                        aria-hidden="true">&times;</button>
+                <h4 class="modal-title">Shop</h4>
+            </div>
+            <div class="modal-body">
+                <form>
+                    <input type="text" class="receiver" id="receiver" placeholder="Enter castle name" ng-model="receiver"/>
+                    <input type="number" id="amountSend" class="amoungSend" ng-model="amount"/>
+                    <button ng-click="sendGold(receiver, amount)">Send</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

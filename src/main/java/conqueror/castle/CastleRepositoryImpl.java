@@ -35,7 +35,8 @@ public class CastleRepositoryImpl implements CastleRepo {
 
     @Override
     public Castle findOneByCastleName(String name) {
-        Query query = em.createQuery("SELECT c from Castle c");
+        Query query = em.createQuery("SELECT c from Castle c where c.castleName like ?1");
+        query.setParameter(1, name);
         List<Castle> castles = query.getResultList();
         if (castles.size() == 0 || castles.isEmpty()) {
             return null;
