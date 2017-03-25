@@ -61,3 +61,12 @@ button#buy{
 background-color: #E6E6FA;
 }
 
+IMG.coin{
+    width: 1%;
+    height: 1%;
+}
+
+.kingdom{
+margin: 5px;
+}
+

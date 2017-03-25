@@ -5,9 +5,12 @@ gameProject.config(function($routeProvider, $httpProvider){
 $routeProvider.when('/registration', {
     templateUrl: 'registration.html',
     controller: 'MainCtrl'
-}).when('/my', {
+}).when('/castle/:id', {
     templateUrl: 'MyCastle.html',
     controller: 'CastleCtrl'
+}).when('/kingdom', {
+    templateUrl: 'MyKingdom.html',
+    controller: 'KingdomCtrl'
 });
 
 $httpProvider.interceptors.push('httpRequestInterceptor');

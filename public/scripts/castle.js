@@ -1,7 +1,8 @@
-angular.module('conquerorApp').controller('CastleCtrl', function ($scope, $rootScope, ModalService, $http, $window) {
+angular.module('conquerorApp').controller('CastleCtrl', function ($scope, $rootScope, ModalService, $http, $window, $routeParams) {
 $scope.myCastle = {};
-
-    $http.get('api/castle/myCastle', $scope.myCastle).then(function(data){
+$scope.castleId = $routeParams['id'];
+$scope.myCastle = {};
+    $http.get('api/castle/castle/' + $scope.castleId, $scope.myCastle).then(function(data){
         $scope.myCastle = data.data;
     })
 
@@ -28,5 +29,4 @@ $scope.myCastle = {};
         modal.element.modal();
         });
         };
-
 });

@@ -51,13 +51,19 @@ public class CastleController {
             return new ResponseEntity<Castle>(HttpStatus.OK);
     }
 
-    @GetMapping("myCastle")
-    public Castle getMyCastle()
+    @GetMapping("myCastles")
+    public List<Castle> getMyCastles()
     {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         String currentUser = auth.getName();
 
-        return castleRepository.findOneByOwner(currentUser);
+        return castleRepository.findByOwner(currentUser);
+    }
+
+    @GetMapping("castle/{id}")
+    public Castle getCastle(@PathVariable("id") Long id)
+    {
+        return castleRepository.findOne(id);
     }
 
     @GetMapping("nearestCastles/{id}")
