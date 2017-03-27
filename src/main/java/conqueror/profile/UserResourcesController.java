@@ -63,16 +63,14 @@ public class UserResourcesController {
     }
 
     @GetMapping("getResources")
-    public Long userResources()
-    {
+    public Long userResources() {
         Long res = 0L;
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         String currentUser = auth.getName();
         List<Castle> castles = castleRepository.findByOwner(currentUser);
         List<UserResources> resources = new ArrayList<>();
 
-        for(int i = 0; i < castles.size(); i++)
-        {
+        for (int i = 0; i < castles.size(); i++) {
             res += userResourcesRepository.findOne(castles.get(i).getId()).getGold();
         }
 
@@ -80,15 +78,13 @@ public class UserResourcesController {
     }
 
     @PostMapping("sendGold/{receiver}")
-    public UserResources sendGold(@PathVariable("receiver") String receiver, UserResourcesDTO userResourcesDTO)
-    {
+    public UserResources sendGold(@PathVariable("receiver") String receiver, UserResourcesDTO userResourcesDTO) {
         Long idReceiver = castleRepo.findOneByCastleName(receiver).getId();
         return userResourcesService.sendGold(idReceiver, userResourcesDTO);
     }
 
     @GetMapping("getGold/{id}")
-    public UserResources getCastleGold(@PathVariable("id") Long id)
-    {
+    public UserResources getCastleGold(@PathVariable("id") Long id) {
         return userResourcesRepository.findOne(id);
     }
 
