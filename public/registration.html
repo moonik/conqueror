@@ -5,7 +5,6 @@
                 <button type="button" class="close" ng-click="close()" data-dismiss="modal"
                         aria-hidden="true">&times;</button>
                 <h4 class="modal-title" ng-show="!isSignedUp">Registration</h4>
-                <h4 class="modal-title" ng-if="isSignedUp && !userCastle">Login</h4>
                 <h4 class="modal-title" ng-if="userCastle">Create castle</h4>
             </div>
             <div class="modal-body">
@@ -13,7 +12,7 @@
                     <label for="castlename">Castle name</label>
                     <input type="text" name="username" id="castlename" class="form-control" ng-model="castleName.name"><br/>
                 </div>
-                <div id="login-form" ng-show="!isSignedIn">
+                <div id="login-form" ng-show="!isSignedUp">
                     <form class="form-group">
                         <label for="username">Username</label>
                         <input type="text_message" name="username" id="username" class="form-control" ng-model="userForm.username"><br/>
@@ -24,7 +23,6 @@
                 </div>
                 <div class="modal-footer">
                     <input ng-show="!isSignedUp" type="submit" value="Sign Up" class="btn btn-block btn-primary submit-reg" name="btn-signup" ng-click="signUp()">
-                    <input ng-if="isSignedUp && !userCastle" type="submit" value="Sign In" class="btn btn-block btn-primary submit-log" name="btn-signin" ng-click="signIn()">
                     <input ng-show="userCastle" type="submit" value="Create castle" class="btn btn-block btn-primary submit-log" name="btn-castleCreate" ng-click="castleCreation()">
                 </div>
             </div>
