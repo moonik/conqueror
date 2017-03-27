@@ -2,19 +2,20 @@ var gameProject = angular.module('conquerorApp', ['ngRoute', 'angularModalServic
 
 gameProject.config(function($routeProvider, $httpProvider){
 
-$routeProvider.when('/registration', {
-    templateUrl: 'registration.html',
-    controller: 'MainCtrl'
-}).when('/castle/:id', {
-    templateUrl: 'MyCastle.html',
-    controller: 'CastleCtrl'
-}).when('/kingdom', {
-    templateUrl: 'MyKingdom.html',
-    controller: 'KingdomCtrl'
-});
-
-$httpProvider.interceptors.push('httpRequestInterceptor');
-});
+    $routeProvider.when('/registration', {
+        templateUrl: 'registration.html',
+        controller: 'MainCtrl'
+        })
+        .when('/castle/:id', {
+            templateUrl: 'myCastle.html',
+            controller: 'CastleCtrl'
+            })
+        .when('/kingdom', {
+            templateUrl: 'myKingdom.html',
+            controller: 'KingdomCtrl'
+            });
+    $httpProvider.interceptors.push('httpRequestInterceptor');
+    });
 
 //testProject.run(function ($rootScope, $location, ModalService, $http) {
 //    $rootScope.me = {};
