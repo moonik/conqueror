@@ -4,7 +4,7 @@ angular.module('conquerorApp').controller('ShopCtrl', function ($scope, $rootSco
 
     $http.get('api/shop/get', $scope.items).then(function(data){
         $scope.items = data.data;
-        })
+    })
 
     $scope.buy = function(amount, warrior)
     {
@@ -14,21 +14,21 @@ angular.module('conquerorApp').controller('ShopCtrl', function ($scope, $rootSco
         $http.post('api/shop/buy/' + castleId, fd, {
             transformRequest: angular.identity,
             headers: {'Content-Type': undefined}
-            }).then(function(data){
-                alert("You bought" + ": " + amount + " "+ warrior);
-                },function(response){
-                    alert("Not enought gold!");
-                    })
-        };
+        }).then(function(data){
+            alert("You bought" + ": " + amount + " "+ warrior);
+        },function(response){
+            alert("Not enought gold!");
+        })
+    };
 
     $scope.close = function () {
         closeModal(undefined);
-        };
+    };
 
     function closeModal(data) {
         $('body').removeClass('modal-open');
         $('.modal-backdrop').remove();
         close(data, 500);
-        }
+    }
 
-    });
+});

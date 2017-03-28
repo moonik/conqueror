@@ -11,11 +11,11 @@ angular.module('conquerorApp').controller('MailsCtrl', function ($scope, $rootSc
         $http.post('api/userresources/sendGold/' + receiver, fd, {
             transformRequest: angular.identity,
             headers: {'Content-Type': undefined}
-            }).then(function(data){
-                alert(amount + "gold was sent");
-                },function(response){
-                    alert("Not enought gold!");
-                    })
-        };
+        }).then(function(data){
+            alert(amount + "gold was sent");
+        },function(response){
+            alert("Not enought gold!");
+        })
+    };
 
-    });
+});

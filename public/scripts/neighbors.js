@@ -3,16 +3,16 @@ angular.module('conquerorApp').controller('NeighborsCtrl', function ($scope, $ro
 
     $http.get('api/castle/nearestCastles/' + castleId).then(function(data){
         $scope.nearestCastles = data.data;
-        })
+    })
 
     $scope.close = function () {
         closeModal(undefined);
-        };
+    };
 
     function closeModal(data) {
         $('body').removeClass('modal-open');
         $('.modal-backdrop').remove();
         close(data, 500);
-        }
+    }
 
-    });
+});

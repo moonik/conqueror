@@ -13,45 +13,46 @@ angular.module('conquerorApp').controller('RegistrationCtrl', function ($scope, 
                 console.log('signed in');
                 $http.get('api/castle/checkCastle').then(function (response) {
                     $rootScope.userCastle = true;
-                    },function(response){
-                        $rootScope.userCastle = false;
-                        closeModal(undefined);
-                        });
-                })
-            $rootScope.isSignedUp = true;
-            },function(response){
-                $rootScope.isSignedUp = false;
+                },function(response){
+                    $rootScope.userCastle = false;
+                    closeModal(undefined);
                 });
-        };
+            })
+            $rootScope.isSignedUp = true;
+        },function(response){
+            $rootScope.isSignedUp = false;
+        });
+     };
 
      $rootScope.getUser = function () {
         $http.get('api/users/me').then(function (response) {
-        $rootScope.user = response.data;
-        $rootScope.isSignedIn = true;
+            $rootScope.user = response.data;
+            $rootScope.isSignedIn = true;
         }, function(response) {
             localStorage.removeItem('jwt');
             $rootScope.isSignedIn = false;
-            })
-        };
+        })
+     };
 
      $scope.close = function () {
         closeModal(undefined);
-        };
+     };
 
      function closeModal(data) {
         $('body').removeClass('modal-open');
         $('.modal-backdrop').remove();
         close(data, 500);
-        }
+     }
+
      $scope.castleCreation = function(){
         var fd = new FormData();
         fd.append('name', $scope.castleName.name);
         $http.post('api/castle/create', fd, {
             transformRequest: angular.identity,
             headers: {'Content-Type': undefined}
-            }).then(function(response){
-                closeModal(undefined);
-                })
-        };
+        }).then(function(response){
+            closeModal(undefined);
+        })
+     };
 
-     });
+});

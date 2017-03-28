@@ -6,11 +6,11 @@ angular.module('conquerorApp').controller('CastleCtrl', function ($scope, $rootS
 
     $http.get('api/castle/castle/' + $scope.castleId, $scope.myCastle).then(function(data){
         $scope.myCastle = data.data;
-        })
+    })
 
     $http.get('api/userresources/getGold/' + $scope.castleId, $scope.castlerRes).then(function(data){
         $scope.castlerRes = data.data;
-        })
+    })
 
     $scope.sendGold = function(){
         ModalService.showModal({
@@ -18,11 +18,11 @@ angular.module('conquerorApp').controller('CastleCtrl', function ($scope, $rootS
             controller: 'MailsCtrl',
             inputs: {
                 castleId: $scope.myCastle.id
-                }
-            }).then(function(modal) {
-                modal.element.modal();
-                });
-        };
+            }
+        }).then(function(modal) {
+            modal.element.modal();
+        });
+    };
 
     $scope.getNearest = function(){
         ModalService.showModal({
@@ -30,11 +30,11 @@ angular.module('conquerorApp').controller('CastleCtrl', function ($scope, $rootS
             controller: 'NeighborsCtrl',
             inputs: {
                 castleId: $scope.myCastle.id
-                }
-            }).then(function(modal) {
-                modal.element.modal();
-                });
-        };
+            }
+        }).then(function(modal) {
+            modal.element.modal();
+        });
+    };
 
     $scope.getShopItems = function(){
         ModalService.showModal({
@@ -42,9 +42,9 @@ angular.module('conquerorApp').controller('CastleCtrl', function ($scope, $rootS
             controller: 'ShopCtrl',
             inputs: {
                 castleId: $scope.myCastle.id
-                }
-            }).then(function(modal) {
-                modal.element.modal();
-                });
-        };
-    });
+            }
+        }).then(function(modal) {
+            modal.element.modal();
+        });
+    };
+});
