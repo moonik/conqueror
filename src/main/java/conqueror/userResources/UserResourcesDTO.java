@@ -1,4 +1,4 @@
-package conqueror.profile;
+package conqueror.userResources;
 
 public class UserResourcesDTO {
 

@@ -17,7 +17,8 @@ angular.module('conquerorApp').controller('ShopCtrl', function ($scope, $rootSco
         }).then(function(data){
             alert("You bought" + ": " + amount + " "+ warrior);
         },function(response){
-            alert("Not enought gold!");
+            $scope.message = response;
+            alert($scope.message.data.message);
         })
     };
 

@@ -1,5 +1,6 @@
 package conqueror.army;
 
+import conqueror.castle.Castle;
 import conqueror.castle.CastleRepo;
 import conqueror.castle.CastleRepository;
 import conqueror.castle.exceptions.CastleException;
@@ -26,6 +27,9 @@ public class ArmyController {
     @Autowired
     private CastleRepo castleRepo;
 
+    @Autowired
+    private ArmyService armyService;
+
     @GetMapping("getArmy/{castleId}")
     public List<Army> getArmy(@PathVariable("castleId") Long castleId)
     {
@@ -40,11 +44,11 @@ public class ArmyController {
             return army;
     }
 
-//    @PostMapping("sendArmy/{receiver}")
-//    public List<Army> sendArmy(@PathVariable("receiver") String receiver, ArmyDTO armyDTO)
-//    {
-//        Long idReceiver = castleRepo.findOneByCastleName(receiver).getId();
-//        return userResourcesService.sendGold(idReceiver, userResourcesDTO);
-//    }
+    @PostMapping("sendArmy/{receiver}")
+    public Army sendArmy(@PathVariable("receiver") String receiver, ArmyDTO armyDTO)
+    {
+        Castle castleReceiver = castleRepo.findOneByCastleName(receiver);
+        return armyService.sendArmyToCastle(castleReceiver, armyDTO);
+    }
 
 }

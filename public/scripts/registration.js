@@ -15,6 +15,8 @@ angular.module('conquerorApp').controller('RegistrationCtrl', function ($scope, 
                     $rootScope.userCastle = true;
                 },function(response){
                     $rootScope.userCastle = false;
+                    $scope.message = response;
+                    alert($scope.message.data.message);
                     closeModal(undefined);
                 });
             })

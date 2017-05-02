@@ -1,4 +1,4 @@
-package conqueror.profile;
+package conqueror.userResources;
 
 import conqueror.castle.CastleRepository;
 import conqueror.castle.exceptions.CastleException;
@@ -26,13 +26,12 @@ public class UserResourcesService {
         UserResources castleSender = userResourcesRepository.findOne(userResourcesDTO.getIdSender());
 
         if (castleSender.getGold() - userResourcesDTO.getAmount() < 0) {
-            throw new NotEnoughtGoldException();
+            throw new NotEnoughtGoldException("Not enough gold!");
         }
         else if(castleReceiver.getId().equals(castleSender.getId()))
         {
-            throw new CastleException();
+            throw new CastleException("You're trying to send gold to the same castle!");
         }
-
         castleSender.setGold(castleSender.getGold() - userResourcesDTO.getAmount());
         userResourcesRepository.save(castleSender);
         castleReceiver.setGold(castleReceiver.getGold() + userResourcesDTO.getAmount());

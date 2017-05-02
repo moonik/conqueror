@@ -1,10 +1,11 @@
-package conqueror.profile;
+package conqueror.userResources;
 
 import conqueror.castle.Castle;
 import conqueror.castle.CastleRepo;
 import conqueror.castle.CastleRepository;
 import conqueror.resourceBuilding.ResourceBuildingRepository;
 import conqueror.user.repository.UserRepository;
+import conqueror.userResources.exceptions.CastleNotExistsException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.security.core.Authentication;
@@ -79,6 +80,9 @@ public class UserResourcesController {
 
     @PostMapping("sendGold/{receiver}")
     public UserResources sendGold(@PathVariable("receiver") String receiver, UserResourcesDTO userResourcesDTO) {
+        if(castleRepo.findOneByCastleName(receiver)== null){
+            throw new CastleNotExistsException("Castle doesn't exist");
+        }
         Long idReceiver = castleRepo.findOneByCastleName(receiver).getId();
         return userResourcesService.sendGold(idReceiver, userResourcesDTO);
     }

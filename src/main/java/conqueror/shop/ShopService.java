@@ -5,9 +5,10 @@ import conqueror.army.ArmyRepo;
 import conqueror.army.ArmyRepository;
 import conqueror.castle.Castle;
 import conqueror.castle.CastleRepository;
-import conqueror.profile.UserResources;
-import conqueror.profile.UserResourcesRepository;
+import conqueror.userResources.UserResources;
+import conqueror.userResources.UserResourcesRepository;
 import conqueror.shop.exceptions.NotEnoughtGoldException;
+import conqueror.shop.exceptions.NotYourCastleException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -43,10 +44,10 @@ public class ShopService {
     public Army buyArmy(Castle castle, ShopDTO shopDTO) {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         String currentUser = auth.getName();
-//        if(castleRepository.findOne(castleId).getOwner() != currentUser)
-//        {
-//            throw new NotYourCastleException();
-//        }
+        if(!castle.getOwner().equals(currentUser))
+        {
+            throw new NotYourCastleException("You're not owner of this castle");
+        }
         Shop searchedWarrior = shopRepository.findOneByWarrior(shopDTO.getWarrior());
         Long userGold = userResourcesRepository.findOne(castle.getId()).getGold();
         Long amountOfWarrior = shopDTO.getAmount() * searchedWarrior.getPrice();
@@ -61,7 +62,7 @@ public class ShopService {
             userResourcesRepository.save(userResources);
             return armyRepository.save(army);
         } else
-            throw new NotEnoughtGoldException();
+            throw new NotEnoughtGoldException("Not enough gold");
 
     }
 

@@ -46,7 +46,7 @@ public class CastleController {
 
         if(castleRepository.findOneByOwner(currentUser) != null)
         {
-            throw new CastleException();
+            throw new CastleException("User already has castle");
         }else
             return new ResponseEntity<Castle>(HttpStatus.OK);
     }

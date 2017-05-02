@@ -52,8 +52,8 @@ public class CastleService {
             return castleRepository.save(newCastle);
         }
 
-        if (castleRepository.findOneByOwner(currentUser) != null || name.equals("") || name.indexOf(" ") != -1) {
-            throw new CastleException();
+        if (castleRepository.findOneByOwner(currentUser) != null || name.equals("") || name.contains(" ")) {
+            throw new CastleException("You already have one castle or you entered bad castle name");
         }
 
 //        if (castleRepo.findOneByCastleName(name) != null) {

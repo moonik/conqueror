@@ -1,4 +1,4 @@
-package conqueror.profile;
+package conqueror.userResources;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
