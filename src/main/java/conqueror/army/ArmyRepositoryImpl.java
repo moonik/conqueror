@@ -19,4 +19,14 @@ public class ArmyRepositoryImpl implements ArmyRepo{
 
         return armyList;
     }
+
+    @Override
+    public Army getArmyByWarriorAndCastleId(Long castleId, Long warriorId) {
+        Query query = em.createQuery("SELECT a from Army a JOIN a.castle c JOIN a.warrior w WHERE c.id =?1 AND w.id=?2");
+        query.setParameter(1, castleId);
+        query.setParameter(2, warriorId);
+        List<Army> armyList = query.getResultList();
+
+        return armyList.size() == 0? null : armyList.get(0);
+    }
 }

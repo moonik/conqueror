@@ -28,7 +28,7 @@ public class UserResourcesService {
         if (castleSender.getGold() - userResourcesDTO.getAmount() < 0) {
             throw new NotEnoughtGoldException();
         }
-        else if(castleReceiver.getId() == castleSender.getId())
+        else if(castleReceiver.getId().equals(castleSender.getId()))
         {
             throw new CastleException();
         }

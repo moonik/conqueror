@@ -1,8 +1,12 @@
 package conqueror.army;
 
+import conqueror.castle.Castle;
+import conqueror.shop.Shop;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.OneToOne;
 
 @Entity
 public class Army {
@@ -11,18 +15,20 @@ public class Army {
     @GeneratedValue
     private Long id;
 
-    private String typeOfWarrior;
+    @OneToOne
+    private Shop warrior;
     private Long amount;
-    private Long castleId;
+    @OneToOne
+    private Castle castle;
     private Boolean deffense;
 
     public Army() {
     }
 
-    public Army(String typeOfWarrior, Long amount, Long castleId, Boolean deffense) {
-        this.typeOfWarrior = typeOfWarrior;
+    public Army(Shop warrior, Long amount, Castle castle, Boolean deffense) {
+        this.warrior = warrior;
         this.amount = amount;
-        this.castleId = castleId;
+        this.castle = castle;
         this.deffense = deffense;
     }
 
@@ -34,12 +40,12 @@ public class Army {
         this.id = id;
     }
 
-    public String getTypeOfWarrior() {
-        return typeOfWarrior;
+    public Shop getWarrior() {
+        return warrior;
     }
 
-    public void setTypeOfWarrior(String typeOfWarrior) {
-        this.typeOfWarrior = typeOfWarrior;
+    public void setWarrior(Shop warrior) {
+        this.warrior = warrior;
     }
 
     public Long getAmount() {
@@ -50,12 +56,12 @@ public class Army {
         this.amount = amount;
     }
 
-    public Long getCastleId() {
-        return castleId;
+    public Castle getCastle() {
+        return castle;
     }
 
-    public void setCastleId(Long castleId) {
-        this.castleId = castleId;
+    public void setCastle(Castle castle) {
+        this.castle = castle;
     }
 
     public Boolean getDeffense() {

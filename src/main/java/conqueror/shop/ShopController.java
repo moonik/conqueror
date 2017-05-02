@@ -1,6 +1,8 @@
 package conqueror.shop;
 
 import conqueror.army.Army;
+import conqueror.castle.Castle;
+import conqueror.castle.CastleRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -16,6 +18,9 @@ public class ShopController {
     @Autowired
     private ShopRepository shopRepository;
 
+    @Autowired
+    private CastleRepository castleRepository;
+
     /**
      * buy new army
      * @param castleId castle id
@@ -25,7 +30,8 @@ public class ShopController {
     @PostMapping("buy/{castleId}")
     public Army buy(@PathVariable("castleId") Long castleId, ShopDTO shopDTO)
     {
-        Army army = shopService.buyArmy(castleId, shopDTO);
+        Castle castle = castleRepository.findOne(castleId);
+        Army army = shopService.buyArmy(castle, shopDTO);
         return army;
     }
 
