@@ -10,7 +10,6 @@ angular.module('conquerorApp').controller('MailsCtrl', function ($scope, $rootSc
             transformRequest: angular.identity,
             headers: {'Content-Type': undefined}
         }).then(function(data){
-            alert(amount + " gold was sent");
         },function(response){
             $scope.message = response;
             alert($scope.message.data.message);

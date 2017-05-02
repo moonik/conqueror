@@ -79,7 +79,7 @@ public class UserResourcesController {
     }
 
     @PostMapping("sendGold/{receiver}")
-    public UserResources sendGold(@PathVariable("receiver") String receiver, UserResourcesDTO userResourcesDTO) {
+    public UserResources sendGold(@PathVariable("receiver") String receiver, UserResourcesDTO userResourcesDTO) throws InterruptedException {
         if(castleRepo.findOneByCastleName(receiver)== null){
             throw new CastleNotExistsException("Castle doesn't exist");
         }
@@ -91,5 +91,6 @@ public class UserResourcesController {
     public UserResources getCastleGold(@PathVariable("id") Long id) {
         return userResourcesRepository.findOne(id);
     }
+
 
 }

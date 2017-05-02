@@ -73,4 +73,10 @@ public class CastleRepositoryImpl implements CastleRepo {
         List<Castle> castles = query.getResultList();
         return castles;
     }
+
+    @Override
+    public int getDistance(Castle receiver, Castle sender) {
+        int distance = (int) Math.abs(Math.sqrt(Math.pow(receiver.getX()-sender.getX(), 2) + Math.pow(receiver.getY()-sender.getY(), 2)));
+        return distance;
+    }
 }
